@@ -1,10 +1,21 @@
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Home from "./Comps/Home";
+import NavbarComponent from "./Comps/Nav";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-function App() {
+const App: React.FC = () => {
   return (
     <>
-      <h1>Soon to be a great app</h1>
+      <NavbarComponent />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<div>About Page</div>} />
+        <Route path="/contact" element={<div>Contact Page</div>} />
+        <Route path="/services" element={<div>Services Page</div>} />
+        <Route path="/products" element={<div>Products Page</div>} />
+      </Routes>
     </>
   );
-}
-
+};
 export default App;
