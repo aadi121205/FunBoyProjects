@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 const os = require("os");
-const connectDB = require('.Comps/db');
+const connectDB = require("./db");
 require('dotenv').config();
 connectDB();
 
