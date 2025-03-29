@@ -59,6 +59,20 @@ app.get('/api/stats', (req, res) => {
     }
   });
 });
+app.get('/api/user/:username', (req, res) => {
+  const username = req.params.username;
+  pool.query('SELECT * FROM users WHERE username = $1', [username], (error, results) => {
+    if (error) {
+      console.error('Error executing query', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    } else if (results.rows.length === 0) {
+      res.status(404).json({ error: 'User not found' });
+    } else {
+      res.status(200).json(results.rows[0]);
+    }
+  });
+}
+);
 
 // 🔒 Middleware to protect routes
 function authenticateToken(req, res, next) {
