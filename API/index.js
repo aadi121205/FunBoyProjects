@@ -15,6 +15,14 @@ app.use(express.json());
 app.use('/api',userRouter);
 app.use('/api',authRouter);
 app.use('/api',postRouter);
+app.get("/api/system", (req, res) => {
+    res.json({
+        message: "System is running",
+        status: true,
+        time: new Date().toISOString(),
+    });
+}
+);
 
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);
