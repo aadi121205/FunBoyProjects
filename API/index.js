@@ -87,6 +87,23 @@ function authenticateToken(req, res, next) {
   });
 }
 
+// 📝 Registration route (expects username, email, and password
+app.post('/api/register', async (req, res) => {
+  const { username, email, password } = req.body;
+
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const result = await pool.query('INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING *', [username, email, hashedPassword]);
+    const newUser = result.rows[0];
+
+    res.status(201).json({ id: newUser.id, username: newUser.username, email: newUser.email });
+  } catch (err) {
+    console.error('Registration error', err);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+// 📝 Registration route (expects username, email, and password)
+
 // 🧾 Login route (expects email and password)
 app.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
