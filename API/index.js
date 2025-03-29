@@ -7,8 +7,6 @@ const postRouter = require('./routes/posts');
 const app = express();
 const PORT = process.env.PORT || 7000;
 
-
-
 require('dotenv').config();
 connectDB();
 
