@@ -3,6 +3,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Home from "./Comps/Home";
 import NavbarComponent from "./Comps/Nav";
 import Footer from "./Comps/Footer";
+import Login from "./Comps/Login";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const App: React.FC = () => {
@@ -11,6 +12,7 @@ const App: React.FC = () => {
       <NavbarComponent />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/about" element={<div>About Page</div>} />
         <Route path="/contact" element={<div>Contact Page</div>} />
         <Route path="/services" element={<div>Services Page</div>} />
